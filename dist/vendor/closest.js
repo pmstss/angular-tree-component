@@ -1,0 +1,30 @@
+// element-closest | CC0-1.0 | github.com/jonathantneal/closest
+if (typeof Element !== 'undefined') {
+    if (typeof Element.prototype.matches !== 'function') {
+        Element.prototype.matches = Element.prototype.msMatchesSelector ||
+            Element.prototype['mozMatchesSelector'] ||
+            Element.prototype.webkitMatchesSelector ||
+            function matches(selector) {
+                var element = this;
+                var elements = (element.document || element.ownerDocument).querySelectorAll(selector);
+                var index = 0;
+                while (elements[index] && elements[index] !== element) {
+                    ++index;
+                }
+                return Boolean(elements[index]);
+            };
+    }
+    if (typeof Element.prototype['closest'] !== 'function') {
+        Element.prototype['closest'] = function closest(selector) {
+            var element = this;
+            while (element && element.nodeType === 1) {
+                if (element.matches(selector)) {
+                    return element;
+                }
+                element = element.parentNode;
+            }
+            return null;
+        };
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2xvc2VzdC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uL2xpYi92ZW5kb3IvY2xvc2VzdC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSwrREFBK0Q7QUFDL0QsSUFBSSxPQUFPLE9BQU8sS0FBSyxXQUFXLEVBQUU7SUFDbEMsSUFBSSxPQUFPLE9BQU8sQ0FBQyxTQUFTLENBQUMsT0FBTyxLQUFLLFVBQVUsRUFBRTtRQUNuRCxPQUFPLENBQUMsU0FBUyxDQUFDLE9BQU8sR0FBSSxPQUFPLENBQUMsU0FBaUIsQ0FBQyxpQkFBaUI7WUFDcEUsT0FBTyxDQUFDLFNBQVMsQ0FBQyxvQkFBb0IsQ0FBQztZQUN2QyxPQUFPLENBQUMsU0FBUyxDQUFDLHFCQUFxQjtZQUN2QyxTQUFTLE9BQU8sQ0FBQyxRQUFRO2dCQUN2QixJQUFJLE9BQU8sR0FBRyxJQUFJLENBQUM7Z0JBQ25CLElBQUksUUFBUSxHQUFHLENBQUMsT0FBTyxDQUFDLFFBQVEsSUFBSSxPQUFPLENBQUMsYUFBYSxDQUFDLENBQUMsZ0JBQWdCLENBQUMsUUFBUSxDQUFDLENBQUM7Z0JBQ3RGLElBQUksS0FBSyxHQUFHLENBQUMsQ0FBQztnQkFFZCxPQUFPLFFBQVEsQ0FBQyxLQUFLLENBQUMsSUFBSSxRQUFRLENBQUMsS0FBSyxDQUFDLEtBQUssT0FBTyxFQUFFO29CQUNyRCxFQUFFLEtBQUssQ0FBQztpQkFDVDtnQkFFRCxPQUFPLE9BQU8sQ0FBQyxRQUFRLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQztZQUNsQyxDQUFDLENBQUM7S0FDUDtJQUVELElBQUksT0FBTyxPQUFPLENBQUMsU0FBUyxDQUFDLFNBQVMsQ0FBQyxLQUFLLFVBQVUsRUFBRTtRQUN0RCxPQUFPLENBQUMsU0FBUyxDQUFDLFNBQVMsQ0FBQyxHQUFHLFNBQVMsT0FBTyxDQUFDLFFBQVE7WUFDdEQsSUFBSSxPQUFPLEdBQUcsSUFBSSxDQUFDO1lBRW5CLE9BQU8sT0FBTyxJQUFJLE9BQU8sQ0FBQyxRQUFRLEtBQUssQ0FBQyxFQUFFO2dCQUN4QyxJQUFJLE9BQU8sQ0FBQyxPQUFPLENBQUMsUUFBUSxDQUFDLEVBQUU7b0JBQzdCLE9BQU8sT0FBTyxDQUFDO2lCQUNoQjtnQkFFRCxPQUFPLEdBQUcsT0FBTyxDQUFDLFVBQVUsQ0FBQzthQUM5QjtZQUVELE9BQU8sSUFBSSxDQUFDO1FBQ2QsQ0FBQyxDQUFDO0tBQ0g7Q0FDRiIsInNvdXJjZXNDb250ZW50IjpbIi8vIGVsZW1lbnQtY2xvc2VzdCB8IENDMC0xLjAgfCBnaXRodWIuY29tL2pvbmF0aGFudG5lYWwvY2xvc2VzdFxyXG5pZiAodHlwZW9mIEVsZW1lbnQgIT09ICd1bmRlZmluZWQnKSB7XHJcbiAgaWYgKHR5cGVvZiBFbGVtZW50LnByb3RvdHlwZS5tYXRjaGVzICE9PSAnZnVuY3Rpb24nKSB7XHJcbiAgICBFbGVtZW50LnByb3RvdHlwZS5tYXRjaGVzID0gKEVsZW1lbnQucHJvdG90eXBlIGFzIGFueSkubXNNYXRjaGVzU2VsZWN0b3IgfHxcclxuICAgICAgICBFbGVtZW50LnByb3RvdHlwZVsnbW96TWF0Y2hlc1NlbGVjdG9yJ10gfHxcclxuICAgICAgICBFbGVtZW50LnByb3RvdHlwZS53ZWJraXRNYXRjaGVzU2VsZWN0b3IgfHxcclxuICAgICAgICBmdW5jdGlvbiBtYXRjaGVzKHNlbGVjdG9yKSB7XHJcbiAgICAgICAgICBsZXQgZWxlbWVudCA9IHRoaXM7XHJcbiAgICAgICAgICBsZXQgZWxlbWVudHMgPSAoZWxlbWVudC5kb2N1bWVudCB8fCBlbGVtZW50Lm93bmVyRG9jdW1lbnQpLnF1ZXJ5U2VsZWN0b3JBbGwoc2VsZWN0b3IpO1xyXG4gICAgICAgICAgbGV0IGluZGV4ID0gMDtcclxuXHJcbiAgICAgICAgICB3aGlsZSAoZWxlbWVudHNbaW5kZXhdICYmIGVsZW1lbnRzW2luZGV4XSAhPT0gZWxlbWVudCkge1xyXG4gICAgICAgICAgICArK2luZGV4O1xyXG4gICAgICAgICAgfVxyXG5cclxuICAgICAgICAgIHJldHVybiBCb29sZWFuKGVsZW1lbnRzW2luZGV4XSk7XHJcbiAgICAgICAgfTtcclxuICB9XHJcblxyXG4gIGlmICh0eXBlb2YgRWxlbWVudC5wcm90b3R5cGVbJ2Nsb3Nlc3QnXSAhPT0gJ2Z1bmN0aW9uJykge1xyXG4gICAgRWxlbWVudC5wcm90b3R5cGVbJ2Nsb3Nlc3QnXSA9IGZ1bmN0aW9uIGNsb3Nlc3Qoc2VsZWN0b3IpIHtcclxuICAgICAgbGV0IGVsZW1lbnQgPSB0aGlzO1xyXG5cclxuICAgICAgd2hpbGUgKGVsZW1lbnQgJiYgZWxlbWVudC5ub2RlVHlwZSA9PT0gMSkge1xyXG4gICAgICAgIGlmIChlbGVtZW50Lm1hdGNoZXMoc2VsZWN0b3IpKSB7XHJcbiAgICAgICAgICByZXR1cm4gZWxlbWVudDtcclxuICAgICAgICB9XHJcblxyXG4gICAgICAgIGVsZW1lbnQgPSBlbGVtZW50LnBhcmVudE5vZGU7XHJcbiAgICAgIH1cclxuXHJcbiAgICAgIHJldHVybiBudWxsO1xyXG4gICAgfTtcclxuICB9XHJcbn1cclxuIl19
